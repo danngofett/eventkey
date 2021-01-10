@@ -10,36 +10,11 @@
     </div>
 
     <main :class="$style.view">
-      <div>KeyboardEvent.key</div>
-
-      <div>
-        {{ code }}
-      </div>
-
-      <pre>
-        function(event) {
-          const { ctrlKey, shiftKey, code } = event
-
-          if ({{ keyString }}) {
-            ...expression
-          }
-        }
-      </pre>
-
-      <div>
-        <base-button label="copy" to="#" />
-        <base-button label="input" to="#" />
-      </div>
+      <preview-panel />
     </main>
 
     <aside :class="$style.aside">
-      <div>
-        History
-      </div>
-
-      <div>
-        Event log
-      </div>
+      <event-log />
     </aside>
 
     <footer :class="$style.footer">
@@ -57,21 +32,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useKeyDownCode } from './mixins/keydown-event'
+import EventLog from '@/components/EventLog.vue'
+import PreviewPanel from '@/components/PreviewPanel.vue'
 
-const App = defineComponent({
-  setup() {
-    const { code, key, keyString } = useKeyDownCode()
-
-    return {
-      code,
-      key,
-      keyString
-    }
+export default defineComponent({
+  components: {
+    EventLog,
+    PreviewPanel
   }
 })
-
-export default App
 </script>
 
 <style module>

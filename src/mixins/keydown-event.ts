@@ -1,14 +1,22 @@
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, reactive, computed } from 'vue'
+
+const code = ref('')
+const type = ref('')
+const key = ref('')
+
+const isShiftKey = ref(false)
+const isCtrlKey = ref(false)
+
+export const timelog = reactive({
+  list: [
+    reactive({
+      input: ref(),
+      value: ref(0)
+    })
+  ]
+})
 
 export function useKeyDownCode() {
-  const code = ref('')
-  const type = ref('')
-  const key = ref('')
-  const timestamp = ref(0)
-
-  const isShiftKey = ref(false)
-  const isCtrlKey = ref(false)
-
   const keyString = computed(() => {
     if (isCtrlKey.value && isShiftKey.value && code) {
       return `ctrlKey && shiftKey && code === '${code.value}'`
@@ -22,9 +30,23 @@ export function useKeyDownCode() {
       return `shiftKey && code === '${code.value}'`
     }
 
-    if (code) {
-      return `code === '${code.value}'`
+    return `code === '${code.value}'`
+  })
+
+  const keyInputs = (() => {
+    if (isCtrlKey.value && isShiftKey.value && code) {
+      return `Ctrl + Shift + ${code.value}`
     }
+
+    if (isCtrlKey.value && code) {
+      return `Ctrl + ${code.value}`
+    }
+
+    if (isShiftKey.value && code) {
+      return `${code.value}`
+    }
+
+    return code.value
   })
 
   function update(event: KeyboardEvent) {
@@ -39,7 +61,15 @@ export function useKeyDownCode() {
     type.value = event.type
     isCtrlKey.value = event.ctrlKey
     isShiftKey.value = event.shiftKey
-    timestamp.value = event.timeStamp
+
+    timelog.list.push({
+      input: keyInputs(),
+      value: event.timeStamp
+    })
+  }
+
+  function reset() {
+    timelog.list = []
   }
 
   onMounted(() => {
@@ -53,6 +83,7 @@ export function useKeyDownCode() {
     isCtrlKey,
     isShiftKey,
     keyString,
-    timestamp
+    timelog,
+    reset
   }
 }
