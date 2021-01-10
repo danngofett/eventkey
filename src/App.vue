@@ -84,7 +84,7 @@ export default defineComponent({
   }
 
   .view {
-    grid-column: 8 / 12;
+    grid-column: 6 / 13;
   }
 
   .aside {

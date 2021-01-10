@@ -1,22 +1,23 @@
 import { onMounted, ref, reactive, computed } from 'vue'
 
-const code = ref('')
-const type = ref('')
-const key = ref('')
-
-const isShiftKey = ref(false)
-const isCtrlKey = ref(false)
-
 export const timelog = reactive({
   list: [
-    reactive({
-      input: ref(),
-      value: ref(0)
-    })
+    reactive({})
   ]
 })
 
+export function reset() {
+  timelog.list = []
+}
+
 export function useKeyDownCode() {
+  const code = ref('')
+  const type = ref('')
+  const key = ref('')
+
+  const isShiftKey = ref(false)
+  const isCtrlKey = ref(false)
+
   const keyString = computed(() => {
     if (isCtrlKey.value && isShiftKey.value && code) {
       return `ctrlKey && shiftKey && code === '${code.value}'`
@@ -66,10 +67,6 @@ export function useKeyDownCode() {
       input: keyInputs(),
       value: event.timeStamp
     })
-  }
-
-  function reset() {
-    timelog.list = []
   }
 
   onMounted(() => {

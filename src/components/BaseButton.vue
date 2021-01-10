@@ -1,7 +1,13 @@
 <template>
-  <a :class="$style.button" :href="to">
-    <span>{{ label }}</span>
-  </a>
+  <div>
+    <button v-if="type === 'button'">
+      {{ label }}
+    </button>
+
+    <a v-else :class="$style.button" :href="to">
+      <span>{{ label }}</span>
+    </a>
+  </div>
 </template>
 
 <script>
@@ -15,6 +21,10 @@ export default {
       type: String,
       default: '',
       required: true
+    },
+    type: {
+      type: String,
+      default: 'link'
     }
   }
 }

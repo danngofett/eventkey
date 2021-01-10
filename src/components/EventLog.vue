@@ -7,26 +7,36 @@
     <div>
       <ul>
         <li
-          v-for="(item, index) in timelog.list"
+          v-for="(item, index) in eventLog"
           :key="index"
         >
           {{ item.input }} / {{ item.value }}
         </li>
       </ul>
 
-      <base-button @click="reset" label="Reset" />
+      <base-button
+        v-if="eventLog.length"
+        @click="reset"
+        label="Reset"
+        type="button"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-import { timelog } from '@/mixins/keydown-event'
+import { defineComponent, computed } from 'vue'
+import { timelog, reset } from '@/mixins/keydown-event'
 
 export default defineComponent({
   setup() {
+    const eventLog = computed(() => {
+      return timelog.list.filter(((item) => item.input))
+    })
+
     return {
-      timelog
+      reset,
+      eventLog
     }
   }
 })
