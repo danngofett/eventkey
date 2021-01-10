@@ -13,8 +13,18 @@
       <div>KeyboardEvent.key</div>
 
       <div>
-        32
+        {{ code }}
       </div>
+
+      <pre>
+        function(event) {
+          const { ctrlKey, shiftKey, code } = event
+
+          if ({{ keyString }}) {
+            ...expression
+          }
+        }
+      </pre>
 
       <div>
         <base-button label="copy" to="#" />
@@ -47,10 +57,21 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useKeyDownCode } from './mixins/keydown-event'
 
-export default defineComponent({
-  name: 'App'
+const App = defineComponent({
+  setup() {
+    const { code, key, keyString } = useKeyDownCode()
+
+    return {
+      code,
+      key,
+      keyString
+    }
+  }
 })
+
+export default App
 </script>
 
 <style module>
