@@ -1,8 +1,12 @@
 <template>
-  <div :class="$style.container">
+  <div :class="[$style.container, { [$style.isDarkMode]: isDarkMode }]">
     <header :class="$style.header">
       <h1 class="h2">eventkey.io</h1>
-      <base-button label="github" to="#" type="button" />
+      <base-button
+        label="github"
+        to="https://github.com/danngofett/eventkey"
+        type="button"
+      />
     </header>
 
     <main :class="$style.main">
@@ -23,19 +27,24 @@
 
     <footer :class="$style.footer">
       <div :class="$style.footerDarkMode">
-        <span class="meta">Dark mode</span>
+        <base-button
+          label="Dark mode"
+          element="button"
+          type="link"
+          @click="isDarkMode = !isDarkMode"
+        />
       </div>
 
       <div :class="$style.footerDisclaimer">
         <p class="meta">This is an open source project, feel free to fork, share or send a PR for any edits.</p>
-        <p class="meta">Made with Vue.js by <base-link label="Dan Ngo" to="#" />.</p>
+        <p class="meta">Made with Vue.js by <a href="https://danielno.com" target="_blank">Dan Ngo</a>.</p>
       </div>
     </footer>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import EventLog from '@/components/EventLog.vue'
 import PreviewPanel from '@/components/PreviewPanel.vue'
 
@@ -43,6 +52,14 @@ export default defineComponent({
   components: {
     EventLog,
     PreviewPanel
+  },
+
+  setup() {
+    const isDarkMode = ref(false)
+
+    return {
+      isDarkMode
+    }
   }
 })
 </script>
@@ -57,9 +74,15 @@ export default defineComponent({
 .container {
   display: flex;
   flex-flow: column wrap;
-  min-height: 100vh;
   margin: 0 auto;
+  min-height: 100vh;
   padding: 0 var(--grid_gutter_l);
+  transition: background-color 1s;
+}
+
+.isDarkMode {
+  color: var(--color_secondary);
+  background-color: var(--color_primary);
 }
 
 .header {
@@ -101,7 +124,7 @@ export default defineComponent({
 
 .footer {
   margin-top: auto;
-  border-top: 1px solid var(--color_primary);
+  border-top: 1px solid currentColor;
 }
 
 @media screen and (min-width: 1024px) {
@@ -122,7 +145,7 @@ export default defineComponent({
   }
 
   .footerDisclaimer {
-    border-left: 1px solid var(--color_primary);
+    border-left: 1px solid currentColor;
     grid-column: 15 / 19;
     padding-left: var(--spacing_xl);
   }

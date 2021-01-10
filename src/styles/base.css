@@ -4,6 +4,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
+  color: var(--color_primary);
+  background-color: var(--color_secondary);
   font-family: "Circular Std Book", sans-serif;
 }
 
@@ -60,4 +62,8 @@ p + p {
 
 .meta {
   font-size: 14px;
+}
+
+a {
+  color: currentColor;
 }

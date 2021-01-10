@@ -7,7 +7,7 @@
       {{ label }}
     </button>
 
-    <a v-else :class="$style.button" :href="to">
+    <a v-else :class="$style.button" :href="to" target="_blank">
       <span>{{ label }}</span>
     </a>
   </div>
@@ -45,7 +45,8 @@ export default {
 .button {
   appearance: none;
   background-color: transparent;
-  border: 1px solid var(--color_primary);
+  border: 1px solid currentColor;
+  color: currentColor;
   cursor: pointer;
   display: inline-block;
   min-width: 110px;
@@ -55,7 +56,7 @@ export default {
 }
 
 .button:hover {
-  background-color: var(--color_primary);
+  background-color: currentColor;
   color: var(--color_secondary);
 }
 
@@ -63,6 +64,7 @@ export default {
   appearance: none;
   background-color: transparent;
   border: 0;
+  color: currentColor;
   cursor: pointer;
   padding: 0;
 }

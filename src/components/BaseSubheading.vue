@@ -49,7 +49,7 @@ export default defineComponent({
 <style module>
 .base-subheading {
   display: flex;
-  border-bottom: 1px solid var(--color_primary);
+  border-bottom: 1px solid currentColor;
   justify-content: space-between;
   margin-bottom: var(--spacing_l);
   padding-bottom: var(--spacing_s);
