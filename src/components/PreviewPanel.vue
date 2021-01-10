@@ -1,12 +1,19 @@
 <template>
   <div class="preview-panel">
-    <div>KeyboardEvent.key</div>
+    <base-subheading
+      heading="KeyboardEvent.key"
+    />
 
-    <div>
+    <div :class="$style.previewCode">
       {{ code }}
     </div>
 
+    <base-subheading
+      heading="Event handler example"
+    />
+
     <textarea
+      :class="$style.textarea"
       ref="codePreview"
       :value="`
         function(event) {
@@ -24,7 +31,7 @@
       <base-button
         :label="copying ? 'copied!' : 'copy'"
         :is-disabled="copying"
-        type="button"
+        element="button"
         @click="copyCodeSnippet"
       />
     </div>
@@ -63,3 +70,17 @@ export default defineComponent({
   }
 })
 </script>
+
+<style module>
+.previewCode {
+  font-size: 148px;
+  margin-bottom: var(--layout_s);
+  word-wrap: anywhere;
+}
+
+.textarea {
+  min-height: 200px;
+  margin-bottom: var(--spacing_l);
+  width: 100%;
+}
+</style>

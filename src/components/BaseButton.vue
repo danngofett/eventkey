@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <button v-if="type === 'button'">
+  <div :class="$style['base-button']">
+    <button
+      :class="$style.button"
+      v-if="element === 'button'"
+    >
       {{ label }}
     </button>
 
@@ -22,7 +25,7 @@ export default {
       default: '',
       required: true
     },
-    type: {
+    element: {
       type: String,
       default: 'link'
     }
@@ -31,9 +34,24 @@ export default {
 </script>
 
 <style module>
-.button {
-  border: 1px solid var(--color_primary);
+.base-button {
   display: inline-block;
-  padding: var(--spacing_m) var(--spacing_l);
+}
+
+.button {
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid var(--color_primary);
+  cursor: pointer;
+  display: inline-block;
+  min-width: 110px;
+  padding: var(--spacing_s) var(--spacing_l);
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: var(--color_primary);
+  color: var(--color_secondary);
 }
 </style>

@@ -9,8 +9,6 @@ import './styles/variables/grid.css'
 import './styles/variables/spacing.css'
 import './styles/variables/typography.css'
 
-import './styles/normalize.css'
-
 const app = createApp(App)
 
 const requireComponent = require.context(

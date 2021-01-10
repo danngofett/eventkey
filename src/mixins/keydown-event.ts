@@ -2,7 +2,10 @@ import { onMounted, ref, reactive, computed } from 'vue'
 
 export const timelog = reactive({
   list: [
-    reactive({})
+    reactive({
+      input: ref(''),
+      value: ref(0)
+    })
   ]
 })
 
@@ -11,7 +14,7 @@ export function reset() {
 }
 
 export function useKeyDownCode() {
-  const code = ref('')
+  const code = ref('Key')
   const type = ref('')
   const key = ref('')
 

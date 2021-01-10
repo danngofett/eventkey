@@ -1,4 +1,4 @@
 :root {
   --grid_columns_l: repeat(18, 1fr);
-  --grid_gutter_l: 15px;
+  --grid_gutter_l: 30px;
 }
