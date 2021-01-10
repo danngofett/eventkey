@@ -100,6 +100,14 @@ export default defineComponent({
   margin-bottom: auto;
 }
 
+.view {
+  grid-column: -1 / 1;
+}
+
+.aside {
+  grid-column: -1 / 1;
+}
+
 .intro {
   grid-column: -1 / 1;
   margin-top: calc(var(--spacing_3xl) + 20px);

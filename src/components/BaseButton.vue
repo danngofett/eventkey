@@ -56,7 +56,7 @@ export default {
 }
 
 .button:hover {
-  background-color: currentColor;
+  background-color: var(--color_primary);
   color: var(--color_secondary);
 }
 

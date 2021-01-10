@@ -72,6 +72,8 @@ export default defineComponent({
 }
 
 .textarea {
+  background-color: transparent;
+  color: currentColor;
   min-height: 200px;
   margin-bottom: var(--spacing_l);
   width: 100%;
