@@ -2,6 +2,9 @@
   <div>
     <base-subheading
       heading="History"
+      action-label="Reset"
+      :hide-label="!eventLog.length"
+      @onAction="reset"
     />
 
     <div :class="$style.panel">
@@ -15,13 +18,6 @@
           <span class="meta">{{ item.value }}</span>
         </li>
       </ul>
-
-      <base-button
-        v-if="eventLog.length"
-        @click="reset"
-        label="Reset"
-        element="button"
-      />
     </div>
   </div>
 </template>

@@ -10,6 +10,8 @@
 
     <base-subheading
       heading="Event handler example"
+      :action-label="copying ? 'copied!' : 'copy'"
+      @onAction="copyCodeSnippet"
     />
 
     <textarea
@@ -26,15 +28,6 @@
       `"
       readonly
     />
-
-    <div>
-      <base-button
-        :label="copying ? 'copied!' : 'copy'"
-        :is-disabled="copying"
-        element="button"
-        @click="copyCodeSnippet"
-      />
-    </div>
   </div>
 </template>
 
