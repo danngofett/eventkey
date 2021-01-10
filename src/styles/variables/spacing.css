@@ -1,0 +1,15 @@
+:root {
+  --spacing_3xs: 0.15rem; /* 2.7px */
+  --spacing_2xs: 0.25rem; /* 4.5px */
+  --spacing_xs: 0.5rem; /* 9px */
+  --spacing_s: 0.75rem; /* 13.5px */
+  --spacing_m: 1rem; /* 18px */
+  --spacing_l: 1.25rem; /* 22.5px */
+  --spacing_xl: 1.5rem; /* 27px */
+  --spacing_2xl: 2rem; /* 36px */
+  --spacing_3xl: 3rem; /* 54px */
+
+  --layout_s: 4rem; /* 72px */
+  --layout_m: 8rem; /* 144px */
+  --layout_l: 12rem; /* 216px */
+}

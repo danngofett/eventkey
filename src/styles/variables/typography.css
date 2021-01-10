@@ -1,0 +1,10 @@
+:root {
+  --weight_book: 300;
+  --weight_bold: 500;
+
+  --line_height_base_s: 1.35em;
+  --line_height_base_l: 1.5em;
+  --line_height_heading_s: 1.1em;
+  --line_height_heading_l: 1.3em;
+  --line_height_display: 1em;
+}
