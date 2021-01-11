@@ -5,7 +5,13 @@
     />
 
     <div :class="$style.previewCode">
-      {{ code }}
+      <span v-if="modifiers" class="h6" :class="$style.previewBadge">
+        {{ modifiers }}
+      </span>
+
+      <span ref="preview" :class="$style.preview">
+        {{ code }}
+      </span>
     </div>
 
     <base-subheading
@@ -32,14 +38,24 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted, computed } from 'vue'
+import fitty from 'fitty'
 import { useKeyDownCode } from '@/mixins/keydown-event'
 
 export default defineComponent({
   setup() {
-    const { code, key, keyString } = useKeyDownCode()
+    const {
+      code,
+      key,
+      isCtrlKey,
+      isShiftKey,
+      modifiers,
+      keyString
+    } = useKeyDownCode()
     const copying = ref(false)
     const codePreview = ref(null)
+    const preview = ref(null)
+
 
     function copyCodeSnippet() {
       codePreview.value.select()
@@ -52,13 +68,24 @@ export default defineComponent({
       }, 1000);
     }
 
+    onMounted(() => {
+      fitty(preview.value, {
+        minSize: 72,
+        maxSize: 300
+      })
+    })
+
     return {
       code,
       codePreview,
       copyCodeSnippet,
       copying,
+      isCtrlKey,
+      isShiftKey,
       key,
-      keyString
+      keyString,
+      modifiers,
+      preview
     }
   }
 })
@@ -66,9 +93,18 @@ export default defineComponent({
 
 <style module>
 .previewCode {
-  font-size: 148px;
   margin-bottom: var(--layout_s);
   word-wrap: anywhere;
+}
+
+.preview {
+  position: relative;
+  left: -7px;
+}
+
+.previewBadge {
+  display: block;
+  margin: var(--spacing_xs) 0;
 }
 
 .textarea {

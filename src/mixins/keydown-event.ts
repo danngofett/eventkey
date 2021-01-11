@@ -27,7 +27,7 @@ export function useKeyDownCode() {
     }
 
     if (isCtrlKey.value && code) {
-      return `isCtrlKey && code === '${code.value}'`
+      return `ctrlKey && code === '${code.value}'`
     }
 
     if (isShiftKey.value && code) {
@@ -35,6 +35,20 @@ export function useKeyDownCode() {
     }
 
     return `code === '${code.value}'`
+  })
+
+  const modifiers = computed(() => {
+    let concatString = []
+
+    if (isCtrlKey.value && (code.value !== 'ControlLeft' && code.value !== 'ControlRight')) {
+      concatString.push('Ctrl')
+    }
+
+    if (isShiftKey.value && (code.value !== 'ShiftLeft' && code.value !== 'ShiftRight')) {
+      concatString.push('Shift')
+    }
+
+    return concatString.join(' + ')
   })
 
   const keyInputs = (() => {
@@ -97,6 +111,7 @@ export function useKeyDownCode() {
     isShiftKey,
     keyString,
     timelog,
+    modifiers,
     reset
   }
 }
